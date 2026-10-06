@@ -1,7 +1,29 @@
 public class MonthlyUsageAnalyser {
 
     public static void main(String[] args) {
+                // 8 primitive data types
+        byte byteValue = 127;
+        short shortValue = 32767;
+        int intValue = 2147483647;
+        long longValue = 9223372036854775807L;
+        float floatValue = 3.14f;
+        double doubleValue = 3.141592653589793;
+        char charValue = 'A';
+        boolean booleanValue = true;
 
+        System.out.println("===== 8 Primitive Types =====");
+        System.out.println("byte: " + byteValue + " (range: -128 to 127)");
+        System.out.println("short: " + shortValue + " (range: -32768 to 32767)");
+        System.out.println("int: " + intValue + " (range: -2147483648 to 2147483647)");
+        System.out.println("long: " + longValue + " (range: -9223372036854775808 to 9223372036854775807)");
+        System.out.println("float: " + floatValue);
+        System.out.println("double: " + doubleValue);
+        System.out.println("char: " + charValue + " (range: 0 to 65535)");
+        System.out.println("boolean: " + booleanValue + " (true or false)");
+
+        // Operator precedence: multiplication happens before addition
+        int precedenceResult = 10 + 5 * 2;
+        System.out.println("Operator precedence: 10 + 5 * 2 = " + precedenceResult);
         // 1-D array: usage for 12 months
         int[] monthlyUsage = {
             120, 150, 180, 90, 210, 175,
