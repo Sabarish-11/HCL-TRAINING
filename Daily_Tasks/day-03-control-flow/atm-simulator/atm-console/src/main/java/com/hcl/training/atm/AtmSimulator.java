@@ -60,8 +60,8 @@ public class AtmSimulator {
             return;
         }
 
-        // ATM menu
-        do {
+        atmMenu:
+do {
             System.out.println();
             System.out.println("========== ATM MENU ==========");
             System.out.println("1. Check Balance");
@@ -188,8 +188,8 @@ public class AtmSimulator {
             }
 
             if (choice == 5) {
-                break;
-            }
+    break atmMenu;
+}
 
         } while (true);
 
