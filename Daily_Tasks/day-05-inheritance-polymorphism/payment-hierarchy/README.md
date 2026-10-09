@@ -79,3 +79,4 @@ and merged into main through a GitHub Pull Request.
 Evidence
 screenshots/01-payment-hierarchy-output.png
 UML.md
+Add-Content "Daily_Tasks\day-05-inheritance-polymorphism\README.md" "`nRebase demonstration prepared during Day 5 Git practice."
