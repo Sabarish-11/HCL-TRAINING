@@ -27,3 +27,5 @@ Payment
 Refundable
 --------------------------------
 + refund() : void
+
+Rebase exercise branch demonstration.
