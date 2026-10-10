@@ -10,6 +10,7 @@ public class AppUser extends BaseEntity {
     private String username;
     private String email;
     private String password;
+    private boolean active;
 
     public AppUser() {
     }
@@ -38,5 +39,12 @@ public class AppUser extends BaseEntity {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+    public boolean isActive() {
+    return active;
+    }
+
+    public void setActive(boolean active) {
+    this.active = active;
     }
 }
