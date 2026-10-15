@@ -1,0 +1,5 @@
+id,username,email,active
+1,arun,arun@example.com,true
+2,priya,priya@example.com,true
+3,kumar,kumar@example.com,false
+4,meena,meena@example.com,true
