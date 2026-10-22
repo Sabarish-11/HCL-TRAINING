@@ -23,27 +23,25 @@ public final class UserService {
 
     public UserAccount registerUser(String username, String email, char[] password, AccountType type)
             throws DuplicateUsernameException {
-        validateRegistration(username, email, password, type);
-        if (repository.usernameExists(username)) {
-            throw new DuplicateUsernameException(username);
-        }
-
-        String passwordHash;
         try {
-            passwordHash = passwordHasher.hash(password);
+            validateRegistration(username, email, password, type);
+            if (repository.usernameExists(username)) {
+                throw new DuplicateUsernameException(username);
+            }
+
+            String passwordHash = passwordHasher.hash(password);
+            long id = nextId.getAndIncrement();
+            UserAccount user = switch (type) {
+                case STANDARD -> new StandardUser(id, username, email, passwordHash);
+                case ADMIN -> new AdminUser(id, username, email, passwordHash);
+            };
+            repository.saveUser(user);
+            return user;
         } finally {
             if (password != null) {
                 java.util.Arrays.fill(password, '\0');
             }
         }
-
-        long id = nextId.getAndIncrement();
-        UserAccount user = switch (type) {
-            case STANDARD -> new StandardUser(id, username, email, passwordHash);
-            case ADMIN -> new AdminUser(id, username, email, passwordHash);
-        };
-        repository.saveUser(user);
-        return user;
     }
 
     public UserAccount activateUser(long id) {

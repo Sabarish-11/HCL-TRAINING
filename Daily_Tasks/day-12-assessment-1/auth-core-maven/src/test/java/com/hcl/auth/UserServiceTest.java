@@ -81,6 +81,28 @@ class UserServiceTest {
     }
 
     @Test
+    void passwordArrayIsClearedWhenRegistrationValidationFails() {
+        char[] password = "short".toCharArray();
+
+        assertThrows(InvalidUserDataException.class, () ->
+                service.registerUser("valid", "valid@example.com", password, AccountType.STANDARD));
+
+        assertArrayEquals(new char[password.length], password);
+    }
+
+    @Test
+    void passwordArrayIsClearedWhenUsernameIsDuplicate() throws Exception {
+        service.registerUser("duplicate", "one@example.com",
+                "Password123".toCharArray(), AccountType.STANDARD);
+        char[] password = "Password456".toCharArray();
+
+        assertThrows(DuplicateUsernameException.class, () ->
+                service.registerUser("DUPLICATE", "two@example.com", password, AccountType.ADMIN));
+
+        assertArrayEquals(new char[password.length], password);
+    }
+
+    @Test
     void usernameLookupIgnoresCase() throws Exception {
         service.registerUser("Sabar", "sabar@example.com", "Password123".toCharArray(), AccountType.STANDARD);
         assertTrue(repository.findByUsername("sABAR").isPresent());
