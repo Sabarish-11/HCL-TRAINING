@@ -55,7 +55,8 @@ Results:
 - PASS: Invalid ID rejected
 - PASS: All checks passed
 
-Remaining concern:
-List.copyOf protects the returned list structure, but StudentSpecific
-objects remain mutable through their setters. The service does not fully
-protect its internal student state from object mutation.
+Final verification:
+StudentSpecific is now immutable: its fields are final and it has no
+setters. List.copyOf prevents callers from modifying the returned list
+structure. The StudentServiceTest checks duplicate-ID rejection,
+unmodifiable-list behavior, and invalid-ID rejection. All checks passed.

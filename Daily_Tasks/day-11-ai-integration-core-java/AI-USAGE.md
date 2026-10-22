@@ -27,7 +27,27 @@ This document records how AI coding assistance was used during the Core Java tra
 
 ## Verification and responsibility
 
-AI-generated code was treated as a draft rather than automatically trusted. I reviewed the code against the stated requirements and documented the changes. Further compilation and tests are still needed to verify the final implementation.
+AI-generated code was treated as a draft rather than automatically trusted. I reviewed the code against the stated requirements, documented six review findings, and fixed the identified design and validation issues. Compiled StudentVague.java, StudentSpecific.java, StudentService.java, and StudentServiceTest.java using javac, then ran StudentServiceTest successfully. The checks confirmed duplicate-ID rejection, an unmodifiable returned list, and invalid-ID rejection. StudentSpecific was also made immutable to protect stored student data from mutation through setters.
+
+## Key lesson
+
+Specific prompts usually communicate requirements more clearly than vague prompts, but neither guarantees correct code. Human review and testing remain necessary.
+### TaskComment entity and repository
+
+- **AI-assisted code:** `TaskComment`, `TaskCommentRepository`, `InMemoryTaskCommentRepository`
+- **Review checks:** Positive ID validation, null handling, blank comment validation, repository lookup and deletion behavior, and defensive collection exposure.
+- **Issues found and fixed:** Added validation for non-positive IDs, rejected null comments and blank content, used `Optional` for ID lookups, and returned an unmodifiable list for task-comment results.
+## Verification and responsibility
+
+AI-generated code was treated as a draft rather than automatically trusted. I reviewed the code against the stated requirements, documented six review findings, and fixed the identified design and validation issues. I compiled `StudentVague.java`, `StudentSpecific.java`, `StudentService.java`, and `StudentServiceTest.java` using `javac`, then ran `StudentServiceTest` successfully. The checks confirmed duplicate-ID rejection, an unmodifiable returned list, and invalid-ID rejection. `StudentSpecific` was made immutable to protect stored student data from mutation through setters.
+
+### TaskComment entity and repository
+
+- **AI-assisted code:** `TaskComment`, `TaskCommentRepository`, `InMemoryTaskCommentRepository`
+- **Review checks:** Positive ID validation, null handling, blank-content validation, repository lookup and deletion behavior, and defensive collection exposure.
+- **Issues found and fixed:** Added validation for non-positive IDs, rejected null comments and blank content, used `Optional` for ID lookups, and returned an unmodifiable list for task-comment results.
+- **Verification:** All 8 repository checks passed using `TaskCommentRepositoryTest`.
+- **Limitation:** This is an in-memory training repository, not a database-backed production implementation. Mention handling and project-member authorization are not implemented here.
 
 ## Key lesson
 
